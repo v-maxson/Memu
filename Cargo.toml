@@ -1,0 +1,17 @@
+[package]
+name = "memu"
+description = "A collection of emulators made with Rust."
+version = "0.1.0"
+edition = "2021"
+
+[profile.release]
+opt-level = "z"
+panic = "abort"
+lto = true
+strip = true
+codegen-units = 1
+
+[dependencies]
+smallvec = "1.8.0" # For small vector optimizations.
+rustc-hash = "1.1.0" # Fast hasher from the rust compiler.
+static_init = "1.0.2" # Lazily evaluated statics.
