@@ -2,10 +2,16 @@
 
 use smallvec::{SmallVec, smallvec};
 
-const MEMORY_SIZE: usize = 0x1000;
-const V_REG_COUNT: usize = 0x10;
-const STACK_SIZE: usize = 0x10;
-const PC_START: usize = 0x200;
+pub const MEMORY_SIZE: usize = 0x1000;
+pub const V_REG_COUNT: usize = 0x10;
+pub const STACK_SIZE: usize = 0x10;
+pub const PC_START: usize = 0x200;
+
+pub const DISPLAY_WIDTH: usize = 64;
+pub const DISPLAY_HEIGHT: usize = 32;
+pub const DISPLAY_DIMENSIONS: usize = DISPLAY_WIDTH * DISPLAY_HEIGHT;
+pub const PIXEL_ON: bool = true;
+pub const PIXEL_OFF: bool = false;
 
 pub struct Cpu {
     /// The CHIP-8 had 4KB of memory available to programs.
@@ -15,6 +21,9 @@ pub struct Cpu {
     /// only the base fontset will be stored in this memory, and the rest
     /// will simply be empty. 
     pub memory: [u8; MEMORY_SIZE],
+
+    /// The CHIP-8 had a 64x32 monochrome display. 
+    pub display_memory: [bool; DISPLAY_DIMENSIONS],
 
     /// The CHIP-8 had 16 general-purpose 8-bit registers collectively called V0 through Vf.
     /// 
@@ -54,6 +63,7 @@ impl Cpu {
     fn default() -> Self {
         Self {
             memory: [0; MEMORY_SIZE],
+            display_memory: [false; DISPLAY_DIMENSIONS],
             v: [0; V_REG_COUNT],
             st: 0,
             dt: 0,
