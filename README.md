@@ -3,8 +3,7 @@ A collection of emulators made with Rust.
 
 ---
 
-#### Emulator List:
-The following is a list of emulation targets:
+#### Emulator Targets:
 - [CHIP-8](https://en.wikipedia.org/wiki/CHIP-8)*
 - [NES](https://en.wikipedia.org/wiki/Nintendo_Entertainment_System)**
 - [Gameboy](https://en.wikipedia.org/wiki/Game_Boy)**
