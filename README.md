@@ -10,5 +10,15 @@ A collection of emulators made with Rust.
 - [Gameboy Color](https://en.wikipedia.org/wiki/Game_Boy_Color)**
 
 > \* This target has incomplete support, and may crash or experience breaking bugs.
-
+> 
 > \** This target is not yet implemented.
+
+---
+
+#### Usage:
+> Usage instructions will be available in this section at a later date.
+
+---
+
+#### CHIP-8:
+> Instructions specific to the CHIP-8 portion of this project will be listed here at a later date.
