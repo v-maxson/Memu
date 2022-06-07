@@ -10,3 +10,4 @@ mod op_3; pub use op_3::*;
 mod op_4; pub use op_4::*;
 mod op_5; pub use op_5::*;
 mod op_6; pub use op_6::*;
+mod op_7; pub use op_7::*;
