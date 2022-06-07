@@ -102,22 +102,14 @@ macro_rules! info {
 macro_rules! debug {
     ($x:expr) => {
         {
-            use $crate::constants::load_debug;
-
-            if load_debug() {
-                use $crate::logger::{LogType, colored_log};
-                colored_log(format!($x), LogType::Debug);
-            }
+            use $crate::logger::{LogType, colored_log};
+            colored_log(format!($x), LogType::Debug);
         }
     };
     ($x:expr, $($arg:tt)*) => {
         {
-            use $crate::constants::load_debug;
-
-            if load_debug() {
-                use $crate::logger::{LogType, colored_log};
-                colored_log(format!($x, $($arg)*), LogType::Debug);
-            }
+            use $crate::logger::{LogType, colored_log};
+            colored_log(format!($x, $($arg)*), LogType::Debug);
         }
     };
 }
