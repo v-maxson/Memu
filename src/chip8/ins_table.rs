@@ -13,6 +13,7 @@ pub static INSTRUCTION_TABLE: InstructionTable = {
     let mut map: InstructionTable = InstructionTable::default();
 
     map.insert(0x0, Cpu::op_0);
+    map.insert(0x1, Cpu::op_1);
 
     map
 };
