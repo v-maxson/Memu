@@ -58,8 +58,7 @@ pub struct Cpu {
     pub stack: SmallVec<[u16; STACK_SIZE]>
 }
 
-impl Cpu {
-    // This isn't implemented via the Default trait so as to keep it private.
+impl Default for Cpu {
     fn default() -> Self {
         Self {
             memory: [0; MEMORY_SIZE],
@@ -72,7 +71,9 @@ impl Cpu {
             stack: smallvec![0; STACK_SIZE]
         }
     }
+}
 
+impl Cpu {
     pub fn start(rom_path: &str, clock_speed_hz: u64) {
         let mut cpu = Cpu::default();
     }
