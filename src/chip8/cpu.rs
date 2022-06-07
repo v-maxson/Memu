@@ -55,7 +55,7 @@ pub struct Cpu {
 
     /// The Stack is a basic stack data-structure that is used to store
     /// the value of the PC to return from subroutines.
-    pub stack: SmallVec<[u8; STACK_SIZE]>
+    pub stack: SmallVec<[u16; STACK_SIZE]>
 }
 
 impl Cpu {
