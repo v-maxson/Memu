@@ -4,6 +4,4 @@ mod utility;
 
 fn main() {
     utility::hook_panic();
-    panic!();
-    todo!()
 }
