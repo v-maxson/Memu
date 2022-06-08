@@ -1,6 +1,10 @@
 # Memu
 A collection of emulators made with Rust.
 
+> Author's Note: This is mainly an exploration into the world of emulation tech. 
+> While collaboration is accepted, it will be extremely limited. This project isn't 
+> meant to create the best emulators out there, it's just to create them.
+
 ---
 
 #### Emulator Targets:
