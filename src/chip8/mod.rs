@@ -9,3 +9,4 @@ mod cpu; pub use cpu::*;
 mod instruction; pub use instruction::*;
 mod ins_table; pub use ins_table::*;
 mod instructions; pub use instructions::*;
+mod builtins; pub use builtins::*;
