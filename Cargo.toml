@@ -16,3 +16,4 @@ smallvec = "1.8.0" # For small vector optimizations.
 rustc-hash = "1.1.0" # Fast hasher from the rust compiler.
 static_init = "1.0.2" # Lazily evaluated statics.
 termcolor = "1.1.3" # Cross-platform terminal coloring.
+fixedstep = "0.3.0" # Simple fixed-step loop.
