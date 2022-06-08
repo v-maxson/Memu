@@ -2,6 +2,7 @@
 //! 
 //! Note: this didn't have to be seperated into multiple files, and was only done
 //! for organizational purposes.
+#![allow(non_snake_case)]
 
 mod op_0; pub use op_0::*;
 mod op_1; pub use op_1::*;
@@ -13,3 +14,4 @@ mod op_6; pub use op_6::*;
 mod op_7; pub use op_7::*;
 mod op_8; pub use op_8::*;
 mod op_9; pub use op_9::*;
+mod op_A; pub use op_A::*;

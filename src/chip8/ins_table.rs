@@ -22,6 +22,7 @@ pub static INSTRUCTION_TABLE: InstructionTable = {
     map.insert(0x7, Cpu::op_7);
     map.insert(0x8, Cpu::op_8);
     map.insert(0x9, Cpu::op_9);
+    map.insert(0xA, Cpu::op_A);
 
     map
 };
