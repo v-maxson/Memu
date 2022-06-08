@@ -2,15 +2,15 @@ use crate::{chip8::{Cpu, Instruction}, utility::get_bit_at};
 
 impl Cpu {
     /// Contains 8 instructions:
-    /// `0x8XY0/LD`     -> Set Vx = Vy
-    /// `0x8XY1/OR`     -> Set Vx |= Vy
-    /// `0x8XY2/AND`    -> Set Vx &= Vy
-    /// `0x8XY3/XOR`    -> Set Vx ^= Vy
-    /// `0x8XY4/ADD`    -> Set Vx += Vy, set Vf to overflow.
-    /// `0x8XY5/SUB`    -> Set Vx -= Vy, set Vf to underflow.
-    /// `0x8XY6/SHR`    -> Set Vx >>= 1, set Vf to shifted bit.
-    /// `0x8XY7/SUBN`   -> Set Vx = Vy - Vx, set Vf to underflow.
-    /// `0x8XYE/SHL`    -> Set Vx <<= 1, set Vf to shifted bit.
+    /// - `0x8XY0/LD`     -> Set Vx = Vy
+    /// - `0x8XY1/OR`     -> Set Vx |= Vy
+    /// - `0x8XY2/AND`    -> Set Vx &= Vy
+    /// - `0x8XY3/XOR`    -> Set Vx ^= Vy
+    /// - `0x8XY4/ADD`    -> Set Vx += Vy, set Vf to overflow.
+    /// - `0x8XY5/SUB`    -> Set Vx -= Vy, set Vf to underflow.
+    /// - `0x8XY6/SHR`    -> Set Vx >>= 1, set Vf to shifted bit.
+    /// - `0x8XY7/SUBN`   -> Set Vx = Vy - Vx, set Vf to underflow.
+    /// - `0x8XYE/SHL`    -> Set Vx <<= 1, set Vf to shifted bit.
     pub fn op_8(&mut self, ins: Instruction) {
         match ins.n {
             0x0 => {
