@@ -11,7 +11,7 @@ impl Cpu {
     /// - `0x8XY6/SHR`    -> Set Vx >>= 1, set Vf to shifted bit.
     /// - `0x8XY7/SUBN`   -> Set Vx = Vy - Vx, set Vf to underflow.
     /// - `0x8XYE/SHL`    -> Set Vx <<= 1, set Vf to shifted bit.
-    pub fn op_8(&mut self, ins: Instruction) {
+    pub fn op_8(&mut self, ins: &Instruction) {
         match ins.n {
             0x0 => {
                 self.v[ins.x as usize] = self.v[ins.y as usize];
