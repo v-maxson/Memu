@@ -54,7 +54,6 @@ impl From<u16> for Instruction {
 impl Instruction {
     pub fn from_u8_pair(high: u8, low: u8) -> Self {
         let value: u16 = ((high as u16) << 8) | (low as u16);
-        println!("{:#06X}", value);
         value.into()
     }
 }
