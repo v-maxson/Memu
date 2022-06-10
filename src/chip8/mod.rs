@@ -5,8 +5,8 @@
 //! https://en.wikipedia.org/wiki/CHIP-8
 #![allow(unused)]
 
+mod builtins; pub use builtins::*;
 mod cpu; pub use cpu::*;
 mod instruction; pub use instruction::*;
-mod ins_table; pub use ins_table::*;
 mod instructions; pub use instructions::*;
-mod builtins; pub use builtins::*;
+mod ins_table; pub use ins_table::*;
