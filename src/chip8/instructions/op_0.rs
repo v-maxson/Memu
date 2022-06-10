@@ -9,7 +9,7 @@ impl Cpu {
             match ins.kk {
                 // CLR
                 0x0E => {
-                    self.display_memory = [PIXEL_OFF; DISPLAY_DIMENSIONS]
+                    self.display_memory = [PIXEL_OFF; DISPLAY_DIMENSIONS];
                 }
 
                 // RET
