@@ -36,3 +36,13 @@ pub fn get_bit_arr_u8(number: u8) -> [bool; 8] {
     
     bitarr
 }
+
+/// Returns a tuple for each RGBA value. 
+pub fn get_rgba(value: u32) -> (u8, u8, u8, u8) {
+    (
+        ((value & 0xFF000000) >> 24) as u8,
+        ((value & 0x00FF0000) >> 16) as u8,
+        ((value & 0x0000FF00) >> 8) as u8,
+        (value & 0x000000FF) as u8
+    )
+}
