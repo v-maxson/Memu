@@ -8,7 +8,7 @@ use rustc_hash::FxHashMap;
 type CpuInstruction = fn(&mut Cpu, &Instruction) -> ();
 type InstructionTable = FxHashMap<u8, CpuInstruction>;
 
-#[dynamic]
+#[dynamic(lazy)]
 pub static INSTRUCTION_TABLE: InstructionTable = {
     let mut map: InstructionTable = InstructionTable::default();
 

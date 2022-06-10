@@ -6,7 +6,7 @@ use rustc_hash::FxHashMap;
 
 type BuiltinsMap = FxHashMap<&'static str, &'static [u8]>;
 
-#[dynamic]
+#[dynamic(lazy)]
 pub static BUILTINS: BuiltinsMap = {
     let mut map = BuiltinsMap::default();
 
