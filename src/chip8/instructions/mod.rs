@@ -1,7 +1,4 @@
 //! This module contains implementations for each CHIP-8 instruction.
-//! 
-//! Note: this didn't have to be seperated into multiple files, and was only done
-//! for organizational purposes.
 #![allow(non_snake_case)]
 
 mod op_0; pub use op_0::*;
