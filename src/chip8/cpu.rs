@@ -207,7 +207,6 @@ impl Cpu {
 
                 // Execute the instruction.
                 if let Some(func) = INSTRUCTION_TABLE.get(&ins.op) {
-                    info!("Executing Instruction -> {:?}", ins);
                     func(&mut cpu, &ins);
                 } else {
                     warn!("Unrecognized Instruction: {}", ins);
