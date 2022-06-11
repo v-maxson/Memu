@@ -1,6 +1,7 @@
 [package]
 name = "memu"
 description = "A collection of emulators made with Rust."
+authors = ["v-maxson"]
 version = "0.5.6"
 edition = "2021"
 
@@ -16,3 +17,4 @@ fixedstep = "0.3.0" # Simple fixed-step loop.
 winit = "0.26.1" # Cross-platform windowing.
 pixels = "0.9.0" # Hardware accelerated pixel frame buffer.
 rand = "0.8.5" # Random Number Generation.
+clap = { version = "3.1.18", features = ["derive"] } # CLI Framework
