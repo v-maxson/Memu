@@ -11,7 +11,7 @@ pub enum LogType {
     Debug
 }
 
-impl std::fmt::Debug for LogType {
+impl std::fmt::Display for LogType {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             Self::Error => write!(f, "error"),
@@ -43,7 +43,7 @@ pub fn colored_log(message: String, t: LogType) {
 
     let mut buffer = buffer_writer.buffer();
     _ = buffer.set_color(ColorSpec::new().set_bold(true).set_fg(Some(t.get_color())));
-    _ = write!(&mut buffer, "{:?}: ", t);
+    _ = write!(&mut buffer, "{}: ", t);
     _ = buffer.reset();
 
     _ = writeln!(&mut buffer, "{}", message);
