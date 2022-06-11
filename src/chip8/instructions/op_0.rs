@@ -15,6 +15,7 @@ impl Cpu {
                 // RET
                 0xEE => {
                     if self.stack.pop().is_none() { panic!("Stack Underflow") }
+                    else { self.stack_pointer -= 1; }
                 }
 
                 _ => ()

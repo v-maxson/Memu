@@ -4,7 +4,7 @@ use fixedstep::FixedStep;
 use pixels::{SurfaceTexture, Pixels};
 use smallvec::{SmallVec, smallvec};
 use winit::{window::WindowBuilder, event_loop::{EventLoop, ControlFlow}, dpi::LogicalSize, event::{Event, WindowEvent}};
-use crate::{error, utility::get_rgba, warn};
+use crate::{error, utility::get_rgba, warn, info};
 use super::{BUILTINS, Instruction, INSTRUCTION_TABLE};
 
 pub const MEMORY_SIZE: usize = 0x1000;
@@ -63,7 +63,10 @@ pub struct Cpu {
 
     /// The Stack is a basic stack data-structure that is used to store
     /// the value of the PC to return from subroutines.
-    pub stack: SmallVec<[u16; STACK_SIZE]>
+    pub stack: SmallVec<[u16; STACK_SIZE]>,
+
+    /// The index of the topmost value of the stack.
+    pub stack_pointer: u8
 }
 
 impl Default for Cpu {
@@ -76,7 +79,8 @@ impl Default for Cpu {
             dt: 0,
             pc: PC_START as u16,
             i: 0,
-            stack: smallvec![0; STACK_SIZE]
+            stack: smallvec![0; STACK_SIZE],
+            stack_pointer: 0
         }
     }
 }
@@ -142,6 +146,7 @@ impl Cpu {
         let mut timer_step = FixedStep::start(60.);
 
         event_loop.run(move |event, _, control_flow| {
+            *control_flow = ControlFlow::Poll;
             match event {
                 Event::RedrawRequested(_) => {
                     // Update the current frame with data from the buffer.
@@ -175,7 +180,7 @@ impl Cpu {
                     match event {
                         WindowEvent::CloseRequested => {
                             *control_flow = ControlFlow::Exit;
-                            panic!();
+                            return;
                         },
 
                         WindowEvent::Resized(size) => {
@@ -198,12 +203,14 @@ impl Cpu {
 
                 // Execute the instruction.
                 if let Some(func) = INSTRUCTION_TABLE.get(&ins.op) {
+                    info!("Executing Instruction -> {:?}", ins);
                     func(&mut cpu, &ins);
                 } else {
                     warn!("Unrecognized Instruction: {}", ins);
                 }
 
-                if ins.op == 0xD { window.request_redraw() }
+                /// Request a redraw if the display is drawn to or cleared.
+                if ins.op == 0xD || ins.full == 0x00E0 { window.request_redraw() }
             }
 
             while timer_step.update() {
@@ -213,8 +220,6 @@ impl Cpu {
                     cpu.st -= 1;
                 }
             }
-
-            *control_flow = ControlFlow::Poll;
         });
 
     }
