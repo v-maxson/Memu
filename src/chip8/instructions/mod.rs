@@ -12,3 +12,4 @@ mod op_7; pub use op_7::*;
 mod op_8; pub use op_8::*;
 mod op_9; pub use op_9::*;
 mod op_A; pub use op_A::*;
+mod op_B; pub use op_B::*;
