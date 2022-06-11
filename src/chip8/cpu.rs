@@ -100,18 +100,18 @@ impl Cpu {
             let path = std::path::Path::new(rom_path);
             if !path.exists() {
                 error!("Provided ROM path does not exist. If this is incorrect, this could be due to missing permissions.");
-                panic!();
+                return;
             } else {
                 match std::fs::read(rom_path) {
                     Ok(vec) => {
                         if vec.len() > MEMORY_SIZE - PC_START {
                             error!("Selected ROM is too large to fit into CHIP-8 Memory Space.");
-                            panic!();
+                            return;
                         } else { rom = vec }
                     },
                     Err(err) => {
                         error!("Could not read provided ROM: {}", err);
-                        panic!();
+                        return;
                     }
                 }
             }
