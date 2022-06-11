@@ -1,6 +1,8 @@
 //! Contains miscellaneous functionality.
 #![allow(unused)]
 
+mod fixed_step; pub use fixed_step::*;
+
 use crate::error;
 
 /// Hooks panic messages.
