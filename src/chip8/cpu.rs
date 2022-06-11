@@ -124,7 +124,7 @@ impl Cpu {
 
         let event_loop = EventLoop::new();
         let window = {
-            let size = LogicalSize::new((DISPLAY_WIDTH) as f64, (DISPLAY_HEIGHT) as f64);
+            let size = LogicalSize::new((DISPLAY_WIDTH * display_scale as usize) as f64, (DISPLAY_HEIGHT * display_scale as usize) as f64);
             WindowBuilder::new()
                 .with_title("Memu: CHIP-8")
                 .with_inner_size(size)
@@ -137,9 +137,6 @@ impl Cpu {
             let surface_texture = SurfaceTexture::new(DISPLAY_WIDTH as u32, DISPLAY_HEIGHT as u32, &window);
             Pixels::new(DISPLAY_WIDTH as u32, DISPLAY_HEIGHT as u32, surface_texture).unwrap()
         };
-
-        // Scale window
-        window.set_inner_size(LogicalSize::new((DISPLAY_WIDTH * display_scale as usize) as f64, (DISPLAY_HEIGHT * display_scale as usize) as f64));
         
         let mut cpu_step = FixedStep::start(clock_speed_hz);
         let mut timer_step = FixedStep::start(60.);
