@@ -5,7 +5,7 @@ impl Cpu {
     pub fn op_2(&mut self, ins: &Instruction) {
         if self.stack_pointer == 16 {
             error!("Stack Overflow");
-            panic!()
+            self.signal_exit = true;
         } else {
             self.stack.push(self.pc);
             self.stack_pointer += 1;

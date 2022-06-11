@@ -66,7 +66,10 @@ pub struct Cpu {
     pub stack: SmallVec<[u16; STACK_SIZE]>,
 
     /// The index of the topmost value of the stack.
-    pub stack_pointer: u8
+    pub stack_pointer: u8,
+
+    /// Whether or not to exit before the next instruction is executed.
+    pub signal_exit: bool
 }
 
 impl Default for Cpu {
@@ -80,7 +83,8 @@ impl Default for Cpu {
             pc: PC_START as u16,
             i: 0,
             stack: smallvec![0; STACK_SIZE],
-            stack_pointer: 0
+            stack_pointer: 0,
+            signal_exit: false
         }
     }
 }
@@ -172,7 +176,7 @@ impl Cpu {
                 
                     if render_resulted_in_err {
                         *control_flow = ControlFlow::Exit;
-                        panic!();
+                        return;
                     }
                 }
                 
@@ -211,6 +215,7 @@ impl Cpu {
 
                 /// Request a redraw if the display is drawn to or cleared.
                 if ins.op == 0xD || ins.full == 0x00E0 { window.request_redraw() }
+                if cpu.signal_exit { *control_flow = ControlFlow::Exit; return; }
             }
 
             while timer_step.update() {
