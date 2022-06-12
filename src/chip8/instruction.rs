@@ -25,6 +25,7 @@ bitfield! {
 }
 
 /// Represents a single CHIP-8 instruction. 
+#[derive(Copy, Clone)]
 pub union Instruction {
     full: u16,
     opxyn: __OPXYN,
