@@ -2,7 +2,7 @@
 name = "memu"
 description = "A collection of emulators made with Rust."
 authors = ["v-maxson"]
-version = "0.6.0"
+version = "0.6.1"
 edition = "2021"
 
 [profile.release]
