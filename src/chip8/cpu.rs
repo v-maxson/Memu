@@ -201,19 +201,21 @@ impl Cpu {
             while cpu_step.update() {
                 // Decode the current instruction in memory.
                 let ins = Instruction::from_u8_pair(cpu.memory[cpu.pc as usize], cpu.memory[(cpu.pc + 1) as usize]);
+                let raw_ins: u16 = ins.full();
+                let opcode = ins.op();
 
                 // Increment the PC
                 cpu.pc += 2;
 
                 // Execute the instruction.
-                if let Some(func) = INSTRUCTION_TABLE.get(&ins.op) {
-                    func(&mut cpu, &ins);
+                if let Some(func) = INSTRUCTION_TABLE.get(&ins.op()) {
+                    func(&mut cpu, ins);
                 } else {
                     warn!("Unrecognized Instruction: {}", ins);
                 }
 
                 /// Request a redraw if the display is drawn to or cleared.
-                if ins.op == 0xD || ins.full == 0x00E0 { window.request_redraw() }
+                if opcode == 0xD || raw_ins == 0x00E0 { window.request_redraw() }
                 if cpu.signal_exit { *control_flow = ControlFlow::Exit; return; }
             }
 

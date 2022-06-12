@@ -5,7 +5,7 @@ use super::{Cpu, Instruction};
 use static_init::dynamic;
 use rustc_hash::FxHashMap;
 
-type CpuInstruction = fn(&mut Cpu, &Instruction) -> ();
+type CpuInstruction = fn(&mut Cpu, Instruction) -> ();
 type InstructionTable = FxHashMap<u8, CpuInstruction>;
 
 #[dynamic(lazy)]

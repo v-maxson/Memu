@@ -2,14 +2,14 @@ use crate::{chip8::{Cpu, Instruction, DISPLAY_WIDTH, DISPLAY_HEIGHT, PIXEL_ON, P
 
 impl Cpu {
     /// `0xDXYN/DRW` -> Draw an N-byte sprite starting at I in memory.
-    pub fn op_D(&mut self, ins: &Instruction) {
-        let x = self.v[ins.x as usize] % DISPLAY_WIDTH as u8;
-        let y = self.v[ins.y as usize] % DISPLAY_HEIGHT as u8;
+    pub fn op_D(&mut self, ins: Instruction) {
+        let x = self.v[ins.x() as usize] % DISPLAY_WIDTH as u8;
+        let y = self.v[ins.y() as usize] % DISPLAY_HEIGHT as u8;
 
         // Set VF to 0.
         self.v[0xF] = 0;
 
-        for row in 0..ins.n {
+        for row in 0..ins.n() {
             // Get the nth byte of sprite data pointed to by I.
             let sprite_byte = self.memory[self.i as usize + row as usize];
 
