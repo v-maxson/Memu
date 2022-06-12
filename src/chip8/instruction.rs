@@ -106,9 +106,3 @@ impl std::fmt::Debug for Instruction {
                 self.full(), self.op(), self.x(), self.y(), self.n(), self.kk(), self.nnn())
     }
 }
-
-#[test]
-fn test() {
-    let ins: Instruction = 0xABCD.into();
-    println!("{:?}", ins);
-}
