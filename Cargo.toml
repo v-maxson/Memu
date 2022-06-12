@@ -18,3 +18,4 @@ winit = "0.26.1" # Cross-platform windowing.
 pixels = "0.9.0" # Hardware accelerated pixel frame buffer.
 rand = "0.8.5" # Random Number Generation.
 clap = { version = "3.1.18", features = ["derive"] } # CLI Framework
+bitfield = "0.13.2" # Simple bitfields.
