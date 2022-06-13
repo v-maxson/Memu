@@ -2,7 +2,7 @@
 name = "memu"
 description = "A collection of emulators made with Rust."
 authors = ["v-maxson"]
-version = "0.6.1"
+version = "0.6.2"
 edition = "2021"
 
 [profile.release]
@@ -19,3 +19,4 @@ smallvec = "1.8.0" # For small vector optimizations.
 static_init = "1.0.2" # Lazily evaluated statics.
 termcolor = "1.1.3" # Cross-platform terminal coloring.
 winit = "0.26.1" # Cross-platform windowing.
+winit_input_helper = "0.12.0" # Winit input.
