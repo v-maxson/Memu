@@ -10,3 +10,4 @@ mod cpu; pub use cpu::*;
 mod instruction; pub use instruction::*;
 mod instructions; pub use instructions::*;
 mod ins_table; pub use ins_table::*;
+mod utility; pub use utility::*;
