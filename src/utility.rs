@@ -1,4 +1,4 @@
-//! Contains miscellaneous functionality.
+//! Contains miscellaneous functionality used in various places throughout this application.
 #![allow(unused)]
 
 use crate::error;
