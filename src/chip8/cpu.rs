@@ -3,9 +3,9 @@
 use fixedstep::FixedStep;
 use pixels::{SurfaceTexture, Pixels};
 use smallvec::{SmallVec, smallvec};
-use winit::{window::WindowBuilder, event_loop::{EventLoop, ControlFlow}, dpi::LogicalSize, event::{Event, WindowEvent}};
+use winit::{window::WindowBuilder, event_loop::{EventLoop, ControlFlow}, dpi::LogicalSize, event::{Event, WindowEvent, VirtualKeyCode}};
 use crate::{error, warn, info};
-use super::{BUILTINS, Instruction, INSTRUCTION_TABLE};
+use super::{BUILTINS, Instruction, INSTRUCTION_TABLE, get_rgba};
 
 pub const MEMORY_SIZE: usize = 0x1000;
 pub const V_REG_COUNT: usize = 0x10;
@@ -20,16 +20,6 @@ pub const PIXEL_OFF: u32 = 0x00000000;
 
 pub const FONTSET: &[u8] = include_bytes!("../../resources/chip8/fontset");
 pub const FONTSET_START: usize = 0x80;
-
-/// Returns a tuple for each RGBA value. 
-pub fn get_rgba(value: u32) -> (u8, u8, u8, u8) {
-    (
-        ((value & 0xFF000000) >> 24) as u8,
-        ((value & 0x00FF0000) >> 16) as u8,
-        ((value & 0x0000FF00) >> 8) as u8,
-        (value & 0x000000FF) as u8
-    )
-}
 
 pub struct Cpu {
     /// The CHIP-8 had 4KB of memory available to programs.
@@ -71,6 +61,9 @@ pub struct Cpu {
     /// to be drawn.
     pub i: u16,
 
+    /// Input helper.
+    pub input: winit_input_helper::WinitInputHelper,
+
     /// The Stack is a basic stack data-structure that is used to store
     /// the value of the PC to return from subroutines.
     pub stack: SmallVec<[u16; STACK_SIZE]>,
@@ -92,6 +85,7 @@ impl Default for Cpu {
             dt: 0,
             pc: PC_START as u16,
             i: 0,
+            input: winit_input_helper::WinitInputHelper::new(),
             stack: smallvec![0; STACK_SIZE],
             stack_pointer: 0,
             signal_exit: false
