@@ -4,7 +4,7 @@ use fixedstep::FixedStep;
 use pixels::{SurfaceTexture, Pixels};
 use smallvec::{SmallVec, smallvec};
 use winit::{window::WindowBuilder, event_loop::{EventLoop, ControlFlow}, dpi::LogicalSize, event::{Event, WindowEvent}};
-use crate::{error, utility::get_rgba, warn, info};
+use crate::{error, warn, info};
 use super::{BUILTINS, Instruction, INSTRUCTION_TABLE};
 
 pub const MEMORY_SIZE: usize = 0x1000;
@@ -20,6 +20,16 @@ pub const PIXEL_OFF: u32 = 0x00000000;
 
 pub const FONTSET: &[u8] = include_bytes!("../../resources/chip8/fontset");
 pub const FONTSET_START: usize = 0x80;
+
+/// Returns a tuple for each RGBA value. 
+pub fn get_rgba(value: u32) -> (u8, u8, u8, u8) {
+    (
+        ((value & 0xFF000000) >> 24) as u8,
+        ((value & 0x00FF0000) >> 16) as u8,
+        ((value & 0x0000FF00) >> 8) as u8,
+        (value & 0x000000FF) as u8
+    )
+}
 
 pub struct Cpu {
     /// The CHIP-8 had 4KB of memory available to programs.

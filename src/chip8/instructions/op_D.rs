@@ -1,4 +1,15 @@
-use crate::{chip8::{Cpu, Instruction, DISPLAY_WIDTH, DISPLAY_HEIGHT, PIXEL_ON, PIXEL_OFF}, utility::get_bit_arr_u8};
+use crate::chip8::{Cpu, Instruction, DISPLAY_WIDTH, DISPLAY_HEIGHT, PIXEL_ON, PIXEL_OFF};
+
+/// Returns a array of each bit.
+pub fn get_bit_arr_u8(number: u8) -> [bool; 8] {
+    let mut bitarr = [false; 8];
+
+    for (i, bit) in bitarr.iter_mut().enumerate() {
+        *bit = number & (0x80 >> i) as u8 > 0;
+    }
+    
+    bitarr
+}
 
 impl Cpu {
     /// `0xDXYN/DRW` -> Draw an N-byte sprite starting at I in memory.
