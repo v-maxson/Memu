@@ -205,7 +205,7 @@ impl Cpu {
             while cpu_step.update() {
                 // Decode the current instruction in memory.
                 let ins = Instruction::from_u8_pair(cpu.memory[cpu.pc as usize], cpu.memory[(cpu.pc + 1) as usize]);
-                let raw_ins: u16 = ins.full();
+                let raw_ins: u16 = ins.get();
                 let opcode = ins.op();
 
                 // Increment the PC
