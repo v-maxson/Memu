@@ -61,9 +61,6 @@ pub struct Cpu {
     /// to be drawn.
     pub i: u16,
 
-    /// Input helper.
-    pub input: winit_input_helper::WinitInputHelper,
-
     /// The Stack is a basic stack data-structure that is used to store
     /// the value of the PC to return from subroutines.
     pub stack: SmallVec<[u16; STACK_SIZE]>,
@@ -85,7 +82,6 @@ impl Default for Cpu {
             dt: 0,
             pc: PC_START as u16,
             i: 0,
-            input: winit_input_helper::WinitInputHelper::new(),
             stack: smallvec![0; STACK_SIZE],
             stack_pointer: 0,
             signal_exit: false
