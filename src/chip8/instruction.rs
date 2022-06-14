@@ -34,12 +34,10 @@ impl From<Instruction> for u16 {
 
 impl Instruction {
     pub fn from_u8_pair(high: u8, low: u8) -> Self {
-        unsafe {
-            let mut new = Self(0x0000);
-            new.set_jj(high);
-            new.set_kk(low);
-            new
-        }
+        let mut new = Self(0x0000);
+        new.set_jj(high);
+        new.set_kk(low);
+        new
     }
 }
 
