@@ -3,8 +3,8 @@
 use fixedstep::FixedStep;
 use pixels::{SurfaceTexture, Pixels};
 use smallvec::{SmallVec, smallvec};
-use winit::{window::WindowBuilder, event_loop::{EventLoop, ControlFlow}, dpi::LogicalSize, event::{Event, WindowEvent, VirtualKeyCode}};
-use crate::{error, warn, info};
+use winit::{window::WindowBuilder, event_loop::{EventLoop, ControlFlow}, dpi::LogicalSize, event::{Event, WindowEvent}};
+use crate::{error, warn};
 use super::{BUILTINS, Instruction, INSTRUCTION_TABLE, get_rgba};
 
 pub const MEMORY_SIZE: usize = 0x1000;
@@ -145,7 +145,6 @@ impl Cpu {
                 .unwrap()
         };
         let mut pixels = {
-            let window_size = window.inner_size();
             let surface_texture = SurfaceTexture::new(DISPLAY_WIDTH as u32, DISPLAY_HEIGHT as u32, &window);
             Pixels::new(DISPLAY_WIDTH as u32, DISPLAY_HEIGHT as u32, surface_texture).unwrap()
         };
@@ -218,7 +217,7 @@ impl Cpu {
                     warn!("Unrecognized Instruction: {}", ins);
                 }
 
-                /// Request a redraw if the display is drawn to or cleared.
+                // Request a redraw if the display is drawn to or cleared.
                 if opcode == 0xD || raw_ins == 0x00E0 { window.request_redraw() }
                 if cpu.signal_exit { *control_flow = ControlFlow::Exit; return; }
             }

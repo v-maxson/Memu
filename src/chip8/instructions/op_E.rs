@@ -1,4 +1,3 @@
-use winit::event::VirtualKeyCode;
 use crate::chip8::{Cpu, Instruction, convert_to_key};
 
 impl Cpu {

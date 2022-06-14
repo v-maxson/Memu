@@ -1,4 +1,4 @@
-use crate::{chip8::{Cpu, Instruction}, error, info};
+use crate::{chip8::{Cpu, Instruction}, error};
 
 impl Cpu {
     /// `0x2NNN/CALL` -> Call a subroutine.
