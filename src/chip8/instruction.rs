@@ -8,17 +8,30 @@ bitfield! {
     pub struct Instruction(u16);
 
     u16;
+
+    /// Gets/Sets the full instruction value.
     pub get, set: 15, 0;
+
+    /// Gets the last 12 bits of the instruction.
     pub nnn, _: 11, 0;
 
     u8;
+
+    /// Gets the first nibble of the instruction.
     pub op, _: 15, 12;
+
+    /// Gets the second nibble of the instruction.
     pub x, _: 11, 8;
+
+    /// Gets the third nibble of the instruction.
     pub y, _: 7, 4;
+
+    /// Gets the fourth nibble of the instruction.
     pub n, _: 3, 0;
-    pub jj, _: 15, 8;
+
+    /// Gets the last byte of the instruction.
     pub kk, _: 7, 0;
-    
+
     _, set_jj: 15, 8;
     _, set_kk: 7, 0;
 }
