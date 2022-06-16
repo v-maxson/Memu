@@ -18,8 +18,8 @@ enum Command {
     /// The CHIP-8 emulator.
     Chip {
         /// The ROM to execute.
-        #[clap(short, long, default_value = "")]
-        rom: String,
+        #[clap(short, long)]
+        rom: Option<String>,
 
         /// The CPU speed (in hz) 
         #[clap(long = "speed", default_value_t = 500)]
@@ -29,7 +29,7 @@ enum Command {
         #[clap(short = 's', long = "scale", default_value_t = 16)]
         display_scale: u8,
 
-        /// Prints a list of built-in ROMs and exits.
+        /// Print a list of built-in ROMs and exits.
         #[clap(short)]
         list: bool
     }
@@ -48,11 +48,11 @@ pub fn run() {
                 return;
             }
 
-            if rom.is_empty() { error!("A ROM (--rom <rom_path or builtin>) must be provided."); return; }
+            if rom.is_none() { error!("A ROM (--rom <rom_path or builtin>) must be provided."); return; }
             if clock_speed > 1000 { error!("clock_speed cannot be greater than 1000."); return; }
             if display_scale > 32 { error!("display_scale cannot be greater than 32."); return; }
 
-            chip8::Cpu::start(rom.as_str(), clock_speed as f64, display_scale);
+            chip8::Cpu::start(rom.unwrap().as_str(), clock_speed as f64, display_scale);
         },
 
         _ => error!("Not yet implemented")
