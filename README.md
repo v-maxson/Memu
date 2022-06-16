@@ -37,6 +37,11 @@ For more help running this program, use the built in `memu help` command.
 This section contains information specific to the CHIP-8 portion of this project.
 
 ##### Known Issues:
-- Sound/Input not yet implemented.
+- None.
+
+##### Missing Features:
+- Sound
+- Input
+  - Instructions `0xE` and `0xF` are not yet implemented.
 
 ---
