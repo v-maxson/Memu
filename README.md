@@ -20,7 +20,16 @@ A collection of emulators made with Rust.
 ---
 
 #### Usage
-> Usage instructions will be available in this section at a later date.
+For now, this application is run from the command line.* Each emulator has settings that are specific to it, for example, the CHIP-8 interpreter has a unique `speed` argument that controls the speed at which the CPU clock runs. An example of running the CHIP-8 interpreter with the built in `IBM` program:
+
+```sh
+memu chip --rom ibm --speed 200 --scale 32
+```
+
+For more help running this program, use the built in `memu help` command.
+
+
+> \* There are plans to change this in the future.
 
 ---
 
