@@ -38,18 +38,16 @@ For more help running this program, use the built in `memu help` command.
 #### CHIP-8
 This section contains information specific to the CHIP-8 portion of this project.
 
-##### CLI:
+##### CLI Usage:
 ```sh
 memu chip [OPTIONS]
 ```
-&nbsp;
-
-**Options:**
-- `-h, --help` -> Print help information
-- `-l` -> Print a list of built-in ROMs and exits
-- `-r, --rom <ROM>` -> The ROM to execute
-- `-s, --scale <DISPLAY_SCALE>` -> The scale of the display [default: 16]
-- `--speed <CLOCK_SPEED>` -> The CPU speed (in hz) [default: 500]
+- **Options:**
+  - `-h, --help` -> Print help information
+  - `-l` -> Print a list of built-in ROMs and exits
+  - `-r, --rom <ROM>` -> The ROM to execute
+  - `-s, --scale <DISPLAY_SCALE>` -> The scale of the display [default: 16]
+  - `--speed <CLOCK_SPEED>` -> The CPU speed (in hz) [default: 500]
 
 &nbsp;
 
