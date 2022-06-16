@@ -20,12 +20,12 @@ enum Command {
         #[clap(short, long)]
         rom: String,
 
-        /// The CPU speed. 
-        #[clap(short, long, default_value_t = 500)]
+        /// The CPU speed (in hz) 
+        #[clap(long = "speed", default_value_t = 500)]
         clock_speed: u16,
 
         /// The scale of the display.
-        #[clap(short, long, default_value_t = 16)]
+        #[clap(short = 's', long = "scale", default_value_t = 16)]
         display_scale: u8
     }
 }
@@ -37,7 +37,7 @@ pub fn run() {
     match args.command {
         Command::Chip { rom, clock_speed, display_scale } => {
             if clock_speed > 1000 { error!("clock_speed cannot be greater than 1000"); return; }
-            if display_scale > 32 { error!("display_scale cannot be greater that 32"); return; }
+            if display_scale > 32 { error!("display_scale cannot be greater than 32"); return; }
 
             chip8::Cpu::start(rom.as_str(), clock_speed as f64, display_scale);
         },
