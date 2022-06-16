@@ -38,6 +38,14 @@ For more help running this program, use the built in `memu help` command.
 #### CHIP-8
 This section contains information specific to the CHIP-8 portion of this project.
 
+##### Notes:
+- Includes a `speed` CLI Option as the clock speed was never standardized and could vary
+  between implementations.
+- Minimal built-in ROMs provided as they were only used for testing purposes. 
+  More ROMs can be downloaded [here](https://github.com/kripod/chip8-roms).
+
+&nbsp;
+
 ##### CLI Usage:
 ```sh
 memu chip [OPTIONS]
