@@ -2,6 +2,7 @@
 
 use fixedstep::FixedStep;
 use pixels::{SurfaceTexture, Pixels};
+use rodio::{OutputStream, Sink, source::SineWave};
 use smallvec::{SmallVec, smallvec};
 use winit::{window::WindowBuilder, event_loop::{EventLoop, ControlFlow}, dpi::LogicalSize, event::{Event, WindowEvent}};
 use crate::{error, warn};
@@ -146,6 +147,13 @@ impl Cpu {
             Pixels::new(DISPLAY_WIDTH as u32, DISPLAY_HEIGHT as u32, surface_texture).unwrap()
         };
         
+        // Initialize Audio
+        let (_stream, handle) = OutputStream::try_default().expect("Could not initialize audio");
+        let audio = Sink::try_new(&handle).expect("Could not initialize audio sink");
+        let source = SineWave::new(440.);
+        audio.append(source);
+        audio.pause();
+
         let mut cpu_step = FixedStep::start(clock_speed_hz);
         let mut timer_step = FixedStep::start(60.);
 
@@ -222,8 +230,10 @@ impl Cpu {
             while timer_step.update() {
                 if cpu.dt > 0 { cpu.dt -= 1; }
                 if cpu.st > 0 {
-                    // TODO: Implement Beep Sound.
+                    audio.play();
                     cpu.st -= 1;
+                } else {
+                    audio.pause();
                 }
             }
         });
