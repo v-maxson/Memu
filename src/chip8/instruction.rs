@@ -42,18 +42,18 @@ impl From<u16> for Instruction {
     }
 }
 
-impl From<Instruction> for u16 {
-    fn from(value: Instruction) -> Self {
-        value.get()
+impl From<(u8, u8)> for Instruction {
+    fn from((jj, kk): (u8, u8)) -> Self {
+        let mut ret = Instruction(0x0000);
+        ret.set_jj(jj);
+        ret.set_kk(kk);
+        ret
     }
 }
 
-impl Instruction {
-    pub fn from_u8_pair(high: u8, low: u8) -> Self {
-        let mut new = Self(0x0000);
-        new.set_jj(high);
-        new.set_kk(low);
-        new
+impl From<Instruction> for u16 {
+    fn from(value: Instruction) -> Self {
+        value.get()
     }
 }
 
