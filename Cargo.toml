@@ -15,6 +15,7 @@ fixedstep = "0.3.0" # Simple fixed-step loop.
 itertools = "0.10.3" # Utility for iterators.
 pixels = "0.9.0" # Hardware accelerated pixel frame buffer.
 rand = "0.8.5" # Random Number Generation.
+rodio = "0.15.0" # Sound Library.
 rustc-hash = "1.1.0" # Fast hasher from the rust compiler.
 smallvec = "1.8.0" # For small vector optimizations.
 static_init = "1.0.2" # Lazily evaluated statics.
