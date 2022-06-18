@@ -130,6 +130,7 @@ impl Cpu {
             cpu.memory[FONTSET_START + i] = *byte;
         }
 
+        /// Initialize Window
         let event_loop = EventLoop::new();
         let window = {
             let size = LogicalSize::new((DISPLAY_WIDTH * display_scale as usize) as f64, (DISPLAY_HEIGHT * display_scale as usize) as f64);
