@@ -65,7 +65,6 @@ memu chip [OPTIONS]
 &nbsp;
 
 ##### Missing Features:
-- Sound
 - Input
   - Instructions `0xE` and `0xF` are not yet implemented.
 
